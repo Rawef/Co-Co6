@@ -11,10 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/reservations-coloc")
@@ -39,26 +37,14 @@ public class ReservationColocController {
     }
 
     @PostMapping("/{annonceId}")
-    public ResponseEntity<ReservationColoc> createReservation(@PathVariable Long annonceId, @RequestBody ReservationColoc reservationColoc,@RequestParam Long id) {
-        // Récupérer l'annonce correspondant à l'identifiant
-        Optional<AnnonceColocation> annonceOptional = annonceColocationService.getAnnonceById(annonceId);
-        if (annonceOptional.isPresent()) {
-            AnnonceColocation annonceColocation = annonceOptional.get();
-            // Associer l'annonce à la réservation
-            reservationColoc.setAnnoncecolocation(annonceColocation);
-            // Enregistrer la réservation avec l'annonce associée
-            ReservationColoc createdReservation = reservationColocService.createReservation(reservationColoc);
-            User user=userRepository.findById(id).get();
-            annonceColocation.setUser(user);
+    public ReservationColoc createReservation(@PathVariable Long annonceId, @RequestBody ReservationColoc reservationColoc,@RequestParam Long id) {
+        return reservationColocService.createReservation(reservationColoc,annonceId,id) ;
+    }
 
-            // Mettre à jour les informations de l'annonce dans la réservation créée
-            createdReservation.getAnnoncecolocation().setPrix(annonceColocation.getPrix());
-            createdReservation.getAnnoncecolocation().setImage(annonceColocation.getImage());
+    @GetMapping("/annoncebyreservation/{reservationid}")
+    public Long retreiveannoncefromreservation(@PathVariable  Long reservationid){
 
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdReservation);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        return reservationColocService.getAnnonceIdFromReservation(reservationid);
     }
 
 
@@ -76,9 +62,26 @@ public class ReservationColocController {
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/stats/reservationCountByDay")
-    public ResponseEntity<Map<Date, Integer>> getReservationCountByDay() {
+    public ResponseEntity<Map<String, Integer>> getReservationCountByDay() {
         Map<Date, Integer> reservationCountMap = reservationColocService.getReservationCountByDay();
-        return ResponseEntity.ok().body(reservationCountMap);
+        Map<String, Integer> formattedMap = new HashMap<>();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        for (Map.Entry<Date, Integer> entry : reservationCountMap.entrySet()) {
+            String formattedDate = formatter.format(entry.getKey());
+            formattedMap.put(formattedDate, entry.getValue());
+        }
+
+        return ResponseEntity.ok().body(formattedMap);
     }
+
+    @GetMapping("/RetreiveUserfromReservation/{reservationid}")
+
+    User retreiveuserfromreservation(@PathVariable Long reservationid){
+        return userRepository.findByReservationColocsId(reservationid);
+    }
+
+
 
 }

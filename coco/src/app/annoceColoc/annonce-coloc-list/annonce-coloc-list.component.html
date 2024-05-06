@@ -75,34 +75,45 @@
           </div>
 
 
+        <div class="row">
+          <div class="col-md-3 mb-4 mt-3" *ngFor="let annonceColoc of annonceColocs">
+            <div class="card h-100">
+              <div class="card-image" [style.backgroundImage]="'url(' + annonceColoc.image + ')'"></div>
+              <div class="card-body">
+                <h5 class="card-title">{{ annonceColoc.titre }}</h5>
+                <p>Nombre de vues: {{ annonceColoc.nombreVues }}</p>
 
-      
-      <section class="cards-wrapper">
-    
-        <div class="card-grid-space" *ngFor="let annonceColoc of annonceColocs">
-         
-          <a class="card"  [style.backgroundImage]="'url(' + annonceColoc.image + ')'" >
-            <div>
-              <h1>{{ annonceColoc.titre }}</h1>
-              <p>{{ annonceColoc.description }}</p>
-              <div class="date">{{ annonceColoc.type }}</div>
-              <div class="tags">
-                <div class="tag">{{ annonceColoc.prix }}$</div>
-                
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+<button type="button" class="btn btn-sm btn-outline-secondary" [routerLink]="['/annoncesColoc/view', annonceColoc.id]">Voir détails</button>
+                  </div>
+                  <small class="text-muted">{{ annonceColoc.dateAnnonce | date }}</small>
+                </div>
               </div>
-              <button class="btn-outline-light" [routerLink]="['/annoncesColoc/view',annonceColoc.id]">Shop All<i class="bi bi-arrow-right"></i></button>
             </div>
-          </a>
+          </div>
         </div>
-       
-       
-        <!-- https://images.unsplash.com/photo-1520839090488-4a6c211e2f94?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=38951b8650067840307cba514b554ba5&auto=format&fit=crop&w=1350&q=80 -->
-      </section>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
       
-
   
       <footer class="footer-distributed">
 

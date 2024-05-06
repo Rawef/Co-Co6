@@ -1,3 +1,4 @@
+
 <header>
     <div class="banner">Bénéficiez d'une réduction de plus de 50%.</div>
     
@@ -52,44 +53,55 @@
         
     </nav>
 </header>
-<div style="max-width: 400px; margin: auto;">
-    <div style="border: 2px solid #007bff; border-radius: 10px; padding: 20px; font-weight: bold; text-align: center;">
-        <form (ngSubmit)="onSubmit()" style="display: inline-block;">
-            <!-- Afficher l'image de l'annonce -->
-            <div class="form-group" style="margin-bottom: 20px;">
-                <label> </label>
-                <div class="col-sm-9 card-image" [style.backgroundImage]="'url(' + annonceColoc.image + ')'"
-                    style="width: 300px; height: 230px; background-size: cover; background-position: center;"></div>
-            </div>
-            <!-- Afficher le prix de l'annonce -->
-            <div class="form-group" style="margin-bottom: 20px;">
-                <label for="prix">Prix de l'annonce :</label>
-                <input type="text" class="form-control" id="prix" [(ngModel)]="prixAnnonce" name="prix" readonly
-                    style="width: 250px;">
-            </div>
-            <!-- Afficher la date de réservation -->
-            <div class="form-group" style="margin-bottom: 20px;">
-                <label for="date">Date de réservation :</label>
-                <input type="datetime-local" class="form-control" id="date" [(ngModel)]="reservation.date" name="date"
-                    required style="width: 250px;">
-            </div>
-            <div class="form-group" style="margin-bottom: 20px;">
-                <label for="nbrColoc">Nombre de colocataires :</label>
-                <input type="number" class="form-control" id="nbrColoc" [(ngModel)]="reservation.nbrColoc" name="nbrColoc"
-                    required style="width: 250px;">
-            </div>
-            <!-- Ajoutez d'autres champs pour les détails de la réservation si nécessaire -->
-            <div class="form-group" style="margin-bottom: 20px;">
-                <!-- Ajoutez ici d'autres champs de formulaire -->
-            </div>
-            <!-- Déplacer le bouton "Réserver" au milieu -->
-            <div style="display: flex; justify-content: center;">
-                <button type="button" class="btn btn-primary" (click)="onSubmit()">Réserver</button>
-            </div>
-        </form>
+
+<div class="container mt-4">
+    <div class="text-center"> <!-- Wrapper div with text-center class -->
+        <div class="card p-4 shadow-lg rounded-3 text-center" style="width: 500px; margin: 0 auto;">
+            <h5 class="card-title mb-4">Formulaire de contrat</h5>
+            <form #contractForm="ngForm" (ngSubmit)="onSubmit()" style="width: 100%; text-align: center;">
+                <div class="form-group mb-3">
+                    <label for="date_contract">Date du contrat:</label>
+                    <input type="date" id="date_contract" [(ngModel)]="Contract.date_contract" name="date_contract" class="form-control" required>
+                </div>
+    
+                <div class="form-group mb-3">
+                    <label for="DureeC">Durée du contrat (en mois) :</label>
+                    <input type="number" id="DureeC" [(ngModel)]="Contract.DureeC" name="DureeC" class="form-control" required>
+                </div>
+    
+                <div class="form-group mb-3">
+                    <label for="choixC">Choix du contrat:</label>
+                    <select id="choixC" [(ngModel)]="Contract.choixC" name="choixC" class="form-control" required>
+                        <option value="" disabled selected>Choisissez une option</option>
+                        <option value="ContratDeLocation">Contrat De Location</option>
+                        <option value="ContratDeColocation">Contrat De Colocation</option>
+                        <option value="ContratDeSousLocation">Contrat De Sous Location</option>
+                    </select>
+                </div>
+    
+                <div class="form-group mb-3">
+                    <label for="signature">Signature:</label>
+                    <input type="checkbox" id="signature" [(ngModel)]="Contract.signature" name="signature" class="form-check-input" required>
+                </div>
+    
+                <div class="text-center mb-3" style="width: 100%; margin-left:40%">
+                    <button type="submit" class="btn btn-primary">Soumettre</button>
+                    <button *ngIf="showGeneratePDFButton" (click)="generatePDF()" class="btn btn-secondary">Générer PDF</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
+
+  
+  
+  
+  
+  
+  
+  
+  
 
 
 

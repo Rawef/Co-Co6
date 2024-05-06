@@ -17,8 +17,10 @@ public class ReservationColoc {
     private Long id;
     @Temporal(TemporalType.DATE)
     private Date date;
+    int nbrColoc;
     @ManyToOne
     AnnonceColocation annoncecolocation;
+    @JsonIgnore
     @ManyToOne
     User user;
 

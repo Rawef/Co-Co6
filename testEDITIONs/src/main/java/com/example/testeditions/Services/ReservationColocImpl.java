@@ -1,7 +1,8 @@
 package com.example.testeditions.Services;
-
+import com.example.testeditions.Entites.AnnonceColocation;
 import com.example.testeditions.Entites.ReservationColoc;
 import com.example.testeditions.Entites.User;
+import com.example.testeditions.Repositories.AnnonceColocationRepository;
 import com.example.testeditions.Repositories.ReservationColocRepository;
 import com.example.testeditions.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,10 @@ public class ReservationColocImpl implements ReservationColocService {
 
     @Autowired
     private ReservationColocRepository reservationColocRepository;
+    @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private AnnonceColocationRepository annonceColocation;
 
 
     @Override
@@ -31,9 +35,15 @@ public class ReservationColocImpl implements ReservationColocService {
     }
 
     @Override
-    public ReservationColoc createReservation(ReservationColoc reservationColoc) {
+    public ReservationColoc createReservation(ReservationColoc reservationColoc,Long annonceId,Long id) {
+        User user =userRepository.findById(id).get();
+        AnnonceColocation anonce =annonceColocation.findById(annonceId).get();
+        ReservationColoc reservation = new ReservationColoc();
+        reservationColoc.setUser(user);
+        reservationColoc.setAnnoncecolocation(anonce);
         return reservationColocRepository.save(reservationColoc);
     }
+
 
 
     @Override
@@ -64,12 +74,23 @@ public class ReservationColocImpl implements ReservationColocService {
 
         for (ReservationColoc reservation : reservations) {
             Date date = reservation.getDate();
-            int count = reservationCountMap.getOrDefault(date, 0);
-            reservationCountMap.put(date, count + 1);
+            if (date != null) {
+                int count = reservationCountMap.getOrDefault(date, 0);
+                reservationCountMap.put(date, count + 1);
+            }
         }
-
         return reservationCountMap;
     }
+
+    @Override
+    public Long getAnnonceIdFromReservation(Long reservationId) {
+        ReservationColoc reservationColoc = reservationColocRepository.findById(reservationId).get();
+        AnnonceColocation annonceColocation = reservationColoc.getAnnoncecolocation();
+        if (annonceColocation != null) {
+            return annonceColocation.getId();
+        } else {
+            throw new IllegalStateException("AnnonceColocation is not associated with the reservation");
+        }    }
 
 
 }

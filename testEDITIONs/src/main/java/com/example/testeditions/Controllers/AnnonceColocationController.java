@@ -2,7 +2,9 @@ package com.example.testeditions.Controllers;
 
 import com.example.testeditions.Entites.AnnonceColocation;
 import com.example.testeditions.Entites.User;
+import com.example.testeditions.Repositories.AnnonceColocationRepository;
 import com.example.testeditions.Repositories.UserRepository;
+import com.example.testeditions.Services.AnnonceColocationImpl;
 import com.example.testeditions.Services.AnnonceColocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +22,9 @@ public class AnnonceColocationController {
     private AnnonceColocationService annonceColocationService;
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AnnonceColocationRepository annonceColocationRepository;
     @GetMapping
     public List<AnnonceColocation> getAllAnnonces() {
         return annonceColocationService.getAllAnnonces();
@@ -38,6 +43,11 @@ public class AnnonceColocationController {
         }
     }
 
+    @GetMapping("afficheruserbyannonce/{annoceid}")
+    public User afficherUserbyannonce(@PathVariable Long annoceid){
+        return userRepository.findByAnnonceColocationsId(annoceid);
+    }
+
     @PostMapping("/ajout")
     public ResponseEntity<AnnonceColocation> createAnnonce(@RequestBody AnnonceColocation annonceColocation,@RequestParam Long id) {
         User user=userRepository.findById(id).get();
@@ -51,6 +61,11 @@ public class AnnonceColocationController {
     public ResponseEntity<AnnonceColocation> updateAnnonce(@PathVariable Long id, @RequestBody AnnonceColocation newAnnonce) {
         AnnonceColocation updatedAnnonce = annonceColocationService.updateAnnonce(id, newAnnonce);
         return updatedAnnonce != null ? ResponseEntity.ok().body(updatedAnnonce) : ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("getannoncebyreservation/{reservationid}")
+    public AnnonceColocation getannoncebyreservation(@PathVariable Long reservationid){
+        return annonceColocationRepository.findAnnonceColocationByReservationColocsId(reservationid);
     }
 
     @DeleteMapping("/{id}")
@@ -77,7 +92,7 @@ public class AnnonceColocationController {
         User user = userRepository.findById(id).get();
         List<AnnonceColocation> annoncesuser=annonceColocationService.getuserannonce(user);
 
-    return annoncesuser;
+        return annoncesuser;
     }
     @GetMapping("/stats/reservationPercentage")
     public ResponseEntity<Map<Long, Float>> getReservationPercentageByAnnonce() {

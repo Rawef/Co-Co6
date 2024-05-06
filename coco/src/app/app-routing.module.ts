@@ -53,7 +53,9 @@ import { EventComponent } from './eventt/event.component';
 import { ShopComponent } from './user-airbnb/shop/shop.component';
 import { CartComponent } from './user-airbnb/cart/cart.component';
 import { PaimementComponent } from './user-airbnb/paimement/paimement.component';
-
+import { BackofficeComponent } from './backoffice1/backoffice.component';
+import { ContractComponent } from './contract/contract.component';
+import { Back2Component } from './back2/back2.component';
 const routes: Routes = [
 
   {path:"home" , component:HomeComponent},
@@ -71,7 +73,9 @@ const routes: Routes = [
   { path: "annoncesColoc/view/:id", component: AnnoceColocViewComponent }, 
   { path: "annoncesColoc/:id", component: UpdateAnnonceColocComponent }, 
   { path: "annoncesColoc/view/:id/reservationColoc", component: CreateReservationColocComponent },
-
+  { path: "back", component: BackofficeComponent }, // Utilisez le bon nom de composant
+  { path: "annoncesColoc/view/:id/reservationColoc/contract/:reservationid", component: ContractComponent },
+  { path: "back2", component: Back2Component }, // Utilisez le bon nom de composant
 
   //MaddouriCovoiturage
   {path:"annonceCOV" , component:AnnonceComponent},
