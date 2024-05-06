@@ -53,6 +53,10 @@ import { EventComponent } from './eventt/event.component';
 import { ShopComponent } from './user-airbnb/shop/shop.component';
 import { CartComponent } from './user-airbnb/cart/cart.component';
 import { PaimementComponent } from './user-airbnb/paimement/paimement.component';
+import { CertistatisComponent } from './certi/certistatis/certistatis.component';
+import { ShowcertComponent } from './certi/showcert/showcert.component';
+import { BackcertiComponent } from './certi/backcerti/backcerti.component';
+import { ShowscheduleComponent } from './certi/showschedule/showschedule.component';
 
 const routes: Routes = [
 
@@ -114,6 +118,18 @@ const routes: Routes = [
   {path:"paiement" , component:PaimementComponent},
 
   { path: 'admin', loadChildren: () => import('./admin-airbnb/admin-airbnb.module').then(m => m.AdminAirbnbModule) },
+
+
+
+  { path: 'event', component: EventComponent },
+  {path :"ticket",  component:TicketComponent},
+  {path :"calendrier" , component: CalendrierComponent},
+  {path :"certification" , component: CertificationComponent},
+  {path :"schedule" , component: ScheduleComponent},
+  {path :"statiscerti" , component : CertistatisComponent},
+  {path :"showsc" , component : ShowcertComponent},
+  {path : "backcerti", component : BackcertiComponent},
+  {path : "showme", component: ShowscheduleComponent},
   
   
   

@@ -4,7 +4,7 @@ import { TicketComponent } from './ticket/ticket.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import {DatePickerModule, MaskedDateTimeService} from '@syncfusion/ej2-angular-calendars';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { AgmCoreModule } from '@agm/core';
+
 import { CalendrierComponent } from './calendrier/calendrier.component';
 import { EventComponent } from './event.component';
 import { BrowserModule } from '@angular/platform-browser';
