@@ -50,6 +50,9 @@ import { ScheduleComponent } from './certi/schedule/schedule.component';
 import { CalendrierComponent } from './eventt/calendrier/calendrier.component';
 import { TicketComponent } from './eventt/ticket/ticket.component';
 import { EventComponent } from './eventt/event.component';
+import { ShopComponent } from './user-airbnb/shop/shop.component';
+import { CartComponent } from './user-airbnb/cart/cart.component';
+import { PaimementComponent } from './user-airbnb/paimement/paimement.component';
 
 const routes: Routes = [
 
@@ -106,6 +109,11 @@ const routes: Routes = [
   { path: 'event', component: EventComponent },
   //{path:"**",redirectTo:"home" ,pathMatch:"full"} 
 
+  {path:"shop" , component:ShopComponent},
+  {path:"cart" , component:CartComponent},
+  {path:"paiement" , component:PaimementComponent},
+
+  { path: 'admin', loadChildren: () => import('./admin-airbnb/admin-airbnb.module').then(m => m.AdminAirbnbModule) },
   
   
   

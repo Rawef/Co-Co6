@@ -35,6 +35,9 @@ import { ForumModule } from './forum/forum.module';
 import { EventtModule } from './eventt/eventt.module';
 import { CertiModule } from './certi/certi.module';
 import { GoogleMap } from '@angular/google-maps';
+import { ShopComponent } from './user-airbnb/shop/shop.component';
+import { CartComponent } from './user-airbnb/cart/cart.component';
+import { PaimementComponent } from './user-airbnb/paimement/paimement.component';
 
 
 const config: SocketIoConfig = { url: 'http://localhost:8089 ', options: {} };
@@ -51,6 +54,9 @@ const config: SocketIoConfig = { url: 'http://localhost:8089 ', options: {} };
     AnnoceColocViewComponent,
     UpdateAnnonceColocComponent,
     CreateReservationColocComponent,
+    ShopComponent,
+    CartComponent,
+    PaimementComponent,
     
     
     
