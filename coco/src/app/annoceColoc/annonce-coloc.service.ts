@@ -68,6 +68,19 @@ export class AnnonceColocService {
     );
   }
 
+
+
+
+  retreiveAnnoncefromReservation(reservationid: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/getannoncebyreservation/${reservationid}`);
+  }
+
+
+
+  retreiveUserFromAnnonce(annoceid: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.baseUrl}/afficheruserbyannonce/${annoceid}`);
+  }
+
    // Méthode pour effectuer une recherche d'annonces par terme de recherche
    searchAnnonces(query: string): Observable<any[]> {
     return this.httpClient.get<any[]>(`${this.baseUrl}/search?query=${query}`);

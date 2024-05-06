@@ -34,10 +34,12 @@ public class AnnonceColocation implements Serializable {
     private int llike;
     private int nombreVues;
     private prefBinome prefB;
+    private String nomProp;
+    private int numT;
 
 
     @JsonIgnore
-   @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Contract> contracts;
 
     @OneToMany(mappedBy = "annoncecolocation", cascade = CascadeType.ALL)
@@ -49,7 +51,8 @@ public class AnnonceColocation implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="annoncecolocation")
     private List<ReservationColoc> reservationColocs;
 
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="annoncecolocation")
+    private List<Comment> Comments;
 
 
 }

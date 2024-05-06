@@ -11,9 +11,11 @@ public interface ContractService {
 
     Optional<Contract> getContractById(Long id);
 
-    Contract createContract(Contract contract);
+    Contract createContract(Contract contract , Long idreservation , Long idannonce , Long idUser);
 
     Contract updateContract(Long id, Contract newContract);
 
     void deleteContract(Long id);
+
+    Contract affectContactToReservation(Long reservationid, Contract contract);
 }

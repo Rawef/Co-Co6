@@ -25,4 +25,4 @@ public interface AnnonceColocationService {
     public Map<Long, Float> getReservationPercentageByAnnonce() ;
 
 
-    }
+}

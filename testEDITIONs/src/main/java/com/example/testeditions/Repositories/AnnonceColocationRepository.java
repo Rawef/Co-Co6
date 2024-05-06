@@ -16,4 +16,6 @@ public interface AnnonceColocationRepository extends JpaRepository<AnnonceColoca
 
     List<AnnonceColocation> findByUser_Id(Long userId);
     List<AnnonceColocation> findByUser(User user);
+
+    AnnonceColocation findAnnonceColocationByReservationColocsId(Long reservationid);
 }
