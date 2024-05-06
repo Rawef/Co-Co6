@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Form with map</title>
+
+  <script src="https://unpkg.com/@angular/core@latest/fesm2015/core.min.js"></script>
+  <script src="https://unpkg.com/@angular/forms@latest/fesm2015/forms.min.js"></script>
+  <script src="https://unpkg.com/@angular/material@latest/fesm2015/material.umd.min.js"></script>
+</head>
+
+<body ng-app="myApp"> <div class="ffbox">
+    <div class="ffbox1">
+      <h1>Add your own event</h1>
+      <h2>Event section</h2>
+      <form>
+        <label for="area">Area:</label>
+        <input type="text" id="area" name="area" ng-model="area" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" ng-model="price" required>
+
+        <label for="availability">Availability:</label>
+        <input type="text" id="availability" name="availability" ng-model="availability" required>
+
+        <label for="date">Pick your date:</label>
+        <mat-card class="demo-inline-calendar-card" style="width: 70%;">
+          <mat-calendar [(selected)]="selected"></mat-calendar>
+        </mat-card>
+        <p>Selected date: {{selected}}</p>
+
+        <button type="button" (click)="losave()">Submittt</button>
+
+      </form>
+    </div>
+    <div class="map-div">
+      <google-map #map (mapClick)="handleClick($event)"></google-map>
+    </div>
+  </div>
+
+</body>
+
+</html>
