@@ -29,10 +29,9 @@ public class ContractController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
-    public ResponseEntity<Contract> createContract(@RequestBody Contract contract) {
-        Contract createdContract = contractService.createContract(contract);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdContract);
+    @PostMapping("/AjouterContract/{reservationid}/{annonceid}/{userid}")
+    public Contract createContract(@RequestBody Contract contract , @PathVariable Long reservationid ,@PathVariable Long annonceid,@PathVariable Long userid) {
+        return contractService.createContract(contract,reservationid,annonceid,userid);
     }
 
     @PutMapping("/{id}")
@@ -45,5 +44,9 @@ public class ContractController {
     public ResponseEntity<Void> deleteContract(@PathVariable Long id) {
         contractService.deleteContract(id);
         return ResponseEntity.noContent().build();
+    }
+    @PostMapping("/affectcontract/{reservationid}")
+    public Contract affecterContracttoreservation(@PathVariable Long reservationid,@RequestBody Contract contract){
+        return contractService.affectContactToReservation(reservationid,contract);
     }
 }

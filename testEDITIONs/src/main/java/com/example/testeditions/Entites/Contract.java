@@ -19,9 +19,13 @@ public class Contract {
     private long id;
     private String content;
     @Temporal(TemporalType.DATE)
+
     private Date date_contract;
-    private StatCont statutC;
+
+
     private int DureeC;
+
+    @Enumerated(EnumType.STRING)
     private choixC choixC;
     private boolean signature;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="contract")

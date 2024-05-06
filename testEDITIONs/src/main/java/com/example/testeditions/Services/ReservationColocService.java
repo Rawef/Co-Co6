@@ -12,11 +12,14 @@ public interface ReservationColocService {
 
     Optional<ReservationColoc> getReservationById(Long id);
 
-    ReservationColoc createReservation(ReservationColoc reservationColoc);
-
+    ReservationColoc createReservation(ReservationColoc reservationColoc,Long annonceId,Long id);
     ReservationColoc updateReservation(Long id, ReservationColoc newReservation);
 
     void deleteReservation(Long id);
     public Map<Date, Integer> getReservationCountByDay() ;
 
-    }
+    public Long getAnnonceIdFromReservation(Long reservationId);
+
+
+
+}

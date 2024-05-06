@@ -25,7 +25,9 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Query("UPDATE User u SET u.banned = false WHERE u.banned = true AND u.banExpiration <= current_timestamp")
     void updateBanStatusAfterOneMinute();
 
+    User findByAnnonceColocationsId(Long annonceId);
 
+    User findByReservationColocsId(Long reservationid);
 
     User findByNom(String username);
 

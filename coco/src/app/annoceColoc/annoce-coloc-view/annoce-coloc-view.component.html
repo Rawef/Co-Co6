@@ -54,73 +54,74 @@
     </nav>
 </header>
 
+<style>
+    .form-control-plaintext {
+        font-family: 'Arial', sans-serif; /* Utilisation de la police Arial */
+        font-size: 16px; /* Taille de police plus grande */
+        color: #333; /* Couleur du texte plus sombre */
+    }
+</style>
 
-
-<div class="row">
-    <div class="col-md-6">
-        <div class="form-group row mb-3">
-            <label class="col-sm-3 col-form-label">Titre :</label>
-            <div class="col-sm-9">
-                <p class="form-control-plaintext">{{ annonceColoc?.titre }}</p>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="blue-border p-4">
+                <h5 class="text-center mb-4">Détails de l'annonce</h5>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Titre :</label></div>
+                    <div class="col-sm-9"><p class="form-control-plaintext">{{ annonceColoc?.titre }}</p></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Description :</label></div>
+                    <div class="col-sm-9"><p class="form-control-plaintext">{{ annonceColoc?.description }}</p></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Adresse :</label></div>
+                    <div class="col-sm-9"><p class="form-control-plaintext">{{ annonceColoc?.adresse }}</p></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Nombre de Chambres :</label></div>
+                    <div class="col-sm-9"><p class="form-control-plaintext">{{ annonceColoc?.nbrChambres }}</p></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Superficie :</label></div>
+                    <div class="col-sm-9"><p class="form-control-plaintext">{{ annonceColoc?.superficie }} m²</p></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Image :</label></div>
+                    <div class="col-sm-9 card-image" [style.backgroundImage]="'url(' + annonceColoc.image + ')'" style="width: 300px; height: 230px; background-size: cover; background-position: center;"></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Prix :</label></div>
+                    <div class="col-sm-9"><p class="form-control-plaintext">{{ annonceColoc?.prix }} Dt</p></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Nom du Propriétaire :</label></div>
+                    <div class="col-sm-9"><p class="form-control-plaintext">{{ annonceColoc?.nomProp }}</p></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Numéro de Téléphone :</label></div>
+                    <div class="col-sm-9"><p class="form-control-plaintext">{{ annonceColoc?.numT }}</p></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Type de Local :</label></div>
+                    <div class="col-sm-9"><p class="form-control-plaintext">{{ annonceColoc?.type }}</p></div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3"><label class="col-form-label">Nombre de vues :</label></div>
+                    <div class="col-sm-9"><p>{{ annonceColoc.nombreVues }}</p></div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center" style="height: 8vh;">
+                    <div class="btn-group">
+                        <button (click)="navigateToReservation()" class="btn btn-primary btn-lg"> Reservation</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group row mb-3">
-            <label class="col-sm-3 col-form-label">Description :</label>
-            <div class="col-sm-9">
-                <p class="form-control-plaintext">{{ annonceColoc?.description }}</p>
-            </div>
-        </div>
-        <div class="form-group row mb-3">
-            <label class="col-sm-3 col-form-label">Adresse :</label>
-            <div class="col-sm-9">
-                <p class="form-control-plaintext">{{ annonceColoc?.adresse }}</p>
-            </div>
-        </div>
-        <div class="form-group row mb-3">
-            <label class="col-sm-3 col-form-label">Nombre de Chambres :</label>
-            <div class="col-sm-9">
-                <p class="form-control-plaintext">{{ annonceColoc?.nbrChambres }}</p>
-            </div>
-        </div>
-        <div class="form-group row mb-3">
-            <label class="col-sm-3 col-form-label">Superficie :</label>
-            <div class="col-sm-9">
-                <p class="form-control-plaintext">{{ annonceColoc?.superficie }} m²</p>
-            </div>
-        </div>
-        <div class="form-group row mb-3">
-            <label class="col-sm-3 col-form-label">Image :</label>
-            <div class="col-sm-9 card-image" [style.backgroundImage]="'url(' + annonceColoc.image + ')'" style="width: 300px; height: 230px; background-size: cover; background-position: center;"></div>
-        </div>
-        
-        <div class="form-group row mb-3">
-            <label class="col-sm-3 col-form-label">Prix :</label>
-            <div class="col-sm-9">
-                <p class="form-control-plaintext">{{ annonceColoc?.prix }} Dt</p>
-            </div>
-        </div>
-        <div class="form-group row mb-3">
-            <label for="typeLocal" class="col-sm-3 col-form-label">Type de Local :</label>
-            <div class="col-sm-9 col-md-6">
-                <p class="form-control-plaintext">{{ annonceColoc?.type }}</p>
-            </div>
-        </div>
-        <div class="form-group row mb-3">
-            <label class="col-sm-3 col-form-label">Nombre de vues :</label>
-            <div class="col-sm-9">
-                <p>{{ annonceColoc.nombreVues }}</p>
-            </div>
-        </div>
-        7<div class="d-flex justify-content-center align-items-center" style="height: 8vh;">
-            <div class="btn-group">
-                <button (click)="navigateToReservation()" class="btn btn-primary btn-lg">Réserver</button>
-            </div>
-        </div>
-        
-        
-
     </div>
 </div>
+
+
 
 <footer class="footer-distributed">
 

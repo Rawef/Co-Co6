@@ -38,7 +38,9 @@ import { GoogleMap } from '@angular/google-maps';
 import { ShopComponent } from './user-airbnb/shop/shop.component';
 import { CartComponent } from './user-airbnb/cart/cart.component';
 import { PaimementComponent } from './user-airbnb/paimement/paimement.component';
-
+import { BackofficeComponent } from './backoffice1/backoffice.component';
+import { ContractComponent } from './contract/contract.component';
+import { Back2Component } from './back2/back2.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:8089 ', options: {} };
 
@@ -57,6 +59,9 @@ const config: SocketIoConfig = { url: 'http://localhost:8089 ', options: {} };
     ShopComponent,
     CartComponent,
     PaimementComponent,
+    BackofficeComponent,
+    ContractComponent,
+    Back2Component,
     
     
     
