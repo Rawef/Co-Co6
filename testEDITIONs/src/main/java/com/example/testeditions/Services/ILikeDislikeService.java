@@ -16,5 +16,6 @@ public interface ILikeDislikeService {
     void deleteLikeDislike(Long id);
     public boolean hasUserLikedProfile(Long userId, Long profilId);
 
+    public double getPercentageOfUsersWhoLikedOrDisliked();
     // Ajoutez d'autres méthodes de service si nécessaire
 }

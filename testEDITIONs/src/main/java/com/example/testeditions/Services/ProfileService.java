@@ -1,6 +1,7 @@
 package com.example.testeditions.Services;
 
 
+import com.example.testeditions.Entites.GenreType;
 import com.example.testeditions.Entites.Matchs;
 import com.example.testeditions.Entites.Profil;
 import com.example.testeditions.Entites.User;
@@ -42,6 +43,25 @@ public class ProfileService implements IProfileService {
             // Gérer le cas où l'utilisateur n'existe pas
             throw new RuntimeException("User not found with ID: " + userId);
         }
+    }
+    public Map<String, Long> countGender() {
+        List<Profil> profiles = profileRepository.findAll();
+        Map<String, Long> genderCount = new HashMap<>();
+        long maleCount = 0;
+        long femaleCount = 0;
+
+        for (Profil profile : profiles) {
+            if (profile.getUser().getGenre() == GenreType.Homme) {
+                maleCount++;
+            } else if (profile.getUser().getGenre() == GenreType.femme) {
+                femaleCount++;
+            }
+        }
+
+        genderCount.put("Hommes", maleCount);
+        genderCount.put("Femmes", femaleCount);
+
+        return genderCount;
     }
 
     @Override

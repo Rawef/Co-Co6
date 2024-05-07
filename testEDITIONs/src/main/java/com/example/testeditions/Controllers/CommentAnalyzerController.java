@@ -17,7 +17,7 @@ public class CommentAnalyzerController {
             System.out.println("Commentaire passé à Node.js : " + commentText);
 
             // Chemin vers votre script Node.js
-            String nodeScriptPath = "C:\\Users\\rawef\\OneDrive\\Desktop\\co-co4\\testEDITIONs\\src\\main\\resources\\static\\perpectiveAnalyzer.js";
+            String nodeScriptPath = "C:\\Users\\med amine nsir\\OneDrive\\Bureau\\Pi\\Backend\\testEDITIONs\\src\\main\\resources\\static\\perspectiveAnalyzer.js";
             ProcessBuilder processBuilder = new ProcessBuilder("node", nodeScriptPath, commentText);
 
             // Démarrage du processus
