@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnonceColocService } from '../annonce-coloc.service';
-import { PaginationInstance } from 'ngx-pagination';
 import { ServiceService } from '../../login/services/service.service';
 
 @Component({

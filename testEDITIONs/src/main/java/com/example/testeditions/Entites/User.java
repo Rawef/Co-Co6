@@ -63,7 +63,8 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
     private List<AnnonceColocation> annonceColocations;
     @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
-    private List<ReservationColoc> ReservationColocs;
+    private List<ReservationColoc> reservationColocs;
+    @JsonIgnore
     @ManyToOne
     Contract contract;
 

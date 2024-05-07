@@ -51,8 +51,7 @@ public class AnnonceColocation implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy="annoncecolocation")
     private List<ReservationColoc> reservationColocs;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="annoncecolocation")
-    private List<Comment> Comments;
+
 
 
 }

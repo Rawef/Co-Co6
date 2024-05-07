@@ -78,7 +78,7 @@ const routes: Routes = [
   { path: "annoncesColoc/view/:id", component: AnnoceColocViewComponent }, 
   { path: "annoncesColoc/:id", component: UpdateAnnonceColocComponent }, 
   { path: "annoncesColoc/view/:id/reservationColoc", component: CreateReservationColocComponent },
-  { path: "back", component: BackofficeComponent }, // Utilisez le bon nom de composant
+  { path: "back1", component: BackofficeComponent }, // Utilisez le bon nom de composant
   { path: "annoncesColoc/view/:id/reservationColoc/contract/:reservationid", component: ContractComponent },
   { path: "back2", component: Back2Component }, // Utilisez le bon nom de composant
 
