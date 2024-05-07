@@ -86,4 +86,20 @@ export class ServiceforumService {
   analyzeComment(commentText: string): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/analyze-comment`, { commentText });
   }
+  getTotalNumberOfPosts(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/posts/total`);
+  }
+  supprimerPost(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/posts/delete/${id}`);
+  }
+  getAveragePostsPerUser(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/posts/average-posts-per-user`);
+  }
+  getTotalReactionsForPosts(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/posts/total`);
+  }
+  getPostWithMostReactions(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/posts/most-reacted`);
+  }
+  
 }  

@@ -26,6 +26,9 @@ export class TinderService {
   getAllProfiles(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/profiles`);
   }
+  deletematch(matchid: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/api/matches/${matchid}`);
+  }
 
   deleteProfile(profileId: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/profiles/${profileId}`);
@@ -37,10 +40,28 @@ export class TinderService {
     return this.http.get<any[]>(`${this.baseUrl}/profiles/names`);
   }
   createProfile(formData: FormData): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/profiles`, formData);
+    return this.http.post<any>(`localhost:8089/profiles`, formData);
   }
   checkUserLikedProfile(userId: number, profileId: number): Observable<boolean> {
     return this.http.get<boolean>(`${this.baseUrl}/likedislikes/check/${userId}/${profileId}`);
   }
-  
+  getMatchGenderPercentages(): Observable<number[]> {
+    return this.http.get<number[]>(`${this.baseUrl}/api/matches/statistics/gender-percentages`);
+  }
+  getTotalLikes(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/likedislikes/totalLikes`);
+  }
+  getTotalMatchCount(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/api/matches/count`);
+  }
+  getPercentageOfUsersWhoLikedOrDisliked(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/likedislikes/percentage`);
+  }
+  countGender(): Observable<Map<string, number>> {
+    return this.http.get<Map<string, number>>(`${this.baseUrl}/profiles/count-gender`);
+  }
+  getMatchsWithUserInfo(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/api/matches/withUserInfo`);
+  }
+ 
 }

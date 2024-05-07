@@ -3,7 +3,7 @@
     <h2>Create Profile</h2>
     <form (ngSubmit)="createProfile()" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="description">Image</label>
+            <label for="Image">Image</label>
             <input type="file" required (change)="onFileChange($event)">
                   </div>
       <div class="form-group">
@@ -13,6 +13,10 @@
       <div class="form-group">
         <label for="age">Age</label>
         <input type="number" class="form-control" id="age" name="age" [(ngModel)]="profileData.age" required>
+      </div>
+      <div class="form-group">
+        <label for="preferencesRecherche">preferencesRecherche</label>
+        <input type="text" class="form-control" id="preferencesRecherche" name="preferencesRecherche" [(ngModel)]="profileData.preferencesRecherche" required>
       </div>
       <div class="form-group">
         <label for="localisation">Localisation</label>

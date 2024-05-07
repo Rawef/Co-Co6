@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./createprofile.component.css']
 })
 export class CreateprofileComponent {
-  profileData: any = {}; // Définissez un objet pour stocker les données du profil
+  profileData: any = {}; 
 file: any = null;
 onFileChange(event: any): void {
   this.file = event.target.files[0];
@@ -17,7 +17,7 @@ onFileChange(event: any): void {
   constructor(private tinderService: TinderService) { }
   createProfile() {
     if(this.file != null){
-    const userId = "9"; // Assuming you have the user ID, replace it with actual user ID
+    const userId = "9"; 
     const formData = new FormData();
     
     formData.append('image', this.file); 
@@ -29,11 +29,10 @@ onFileChange(event: any): void {
     this.tinderService.createProfile(this.profileData).subscribe(
       (response) => {
         console.log('Profile created successfully:', response);
-        // Optionally, you can perform actions after profile creation, such as redirecting to another page
+        
       },
       (error) => {
         console.error('Error creating profile:', error);
-        // Handle error response, display error message, etc.
       }
     );
   }

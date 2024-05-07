@@ -1,49 +1,107 @@
 <header>
-    <div class="banner">Get over 50% off.</div>
-
+    <div class="banner">Bénéficiez d'une réduction de plus de 50%.</div>
+    
     <nav>
+          
         <div id="logo">
             <i class="bi bi-luggage-fill"></i>
             Co&Co
         </div>
         <ul class="navigation-menu">
-            <li><a href="#">Home</a>
+            <li><a [routerLink]="['/home']">Home</a>
                 <ul class="subnav">
-                    <!-- Add submenu items here if needed -->
+ 
                 </ul>
-            </li>
+
+
             <li><a href="#">Services</a>
                 <ul class="subnav">
                     <li class="card-med" id="serv-groom">
-                        <div class="card-image"><a href="https://imgbb.com/"><img
-                                    src="https://i.ibb.co/19R91NJ/quirky-real-estate-house-with-a-key-1.png"
-                                    alt="quirky-real-estate-house-with-a-key-1" [border]="0"></a></div>
+                        <div class="card-image"><a href="https://imgbb.com/"><img src="https://i.ibb.co/19R91NJ/quirky-real-estate-house-with-a-key-1.png" alt="quirky-real-estate-house-with-a-key-1" border="0"></a></div>
                         <a href="#">
-                            <span>roommate</span>
+                            <span>colocation</span>
                             <span>More Info <i class="bi bi-arrow-right"></i></span>
                         </a>
                     </li>
                     <li class="card-med" id="serv-board">
-                        <div class="card-image"><a href="https://imgbb.com/"><img
-                                    src="https://i.ibb.co/89c6fM4/transistor-man-traveling-by-car-with-dog.png"
-                                    alt="transistor-man-traveling-by-car-with-dog" [border]="0"></a></div>
+                        <div class="card-image"><a href="https://imgbb.com/"><img src="https://i.ibb.co/89c6fM4/transistor-man-traveling-by-car-with-dog.png" alt="transistor-man-traveling-by-car-with-dog" border="0"></a></div>
                         <a href="#">
-                            <span>carpooling</span>
+                            <span>covoiturage</span>
                             <span>More Info<i class="bi bi-arrow-right"></i></span>
                         </a>
-                    </li>
                 </ul>
             </li>
-            <li><a href="#locate">Locations &amp; Hours</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a href="#locate">Locations &amp; Hours</a>
+            </li>
+            <li><a [routerLink]="['/tinder']">Tinder</a>
+            </li>
+            <li><a [routerLink]="['/affichpost']">Forum</a>
+            </li>
+            <li>
+                <a href="#">About Us</a>
+            </li>
+            
+
         </ul>
         <div id="utility">
-            <li class="card-med" id="serv-board"><a><i class="bi bi-cart"></i></a></li>
-            <li class="card-med" id="serv-board"><a routerLinkActive="active"><i
-                        class="bi bi-person-fill"></i></a></li>
+
+                <li class="card-med" id="serv-board"><a [routerLink]="['/panier']" > <i class="bi bi-cart"></i></a></li> 
+                <li class="card-med" id="serv-board"><a [routerLink]="['/profile']" routerLinkActive="active" > <i class="bi bi-person-fill"></i></a></li>
+                
+                
+             
         </div>
+     
+
+        
+
+        
     </nav>
 </header>
+
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <label for="languageSelect"></label>
+        <div class="radio-input">
+            <div class="glass">
+                <div class="glass-inner">
+                </div>
+            </div>
+            <div class="selector">
+                <div class="choice">
+                    <div>
+                        <input type="radio" id="en" name="language-selector" value="en" [(ngModel)]="selectedLanguage" (change)="switchLanguage()" class="choice-circle">
+                        <div class="ball"></div>
+                    </div>
+                    <label class="choice-name" for="en">Anglais</label>
+                </div>
+                <div class="choice">
+                    <div>
+                        <input type="radio" id="fr" name="language-selector" value="fr" [(ngModel)]="selectedLanguage" (change)="switchLanguage()" class="choice-circle">
+                        <div class="ball"></div>
+                    </div>
+                    <label class="choice-name" for="fr">Français</label>
+                </div>
+                <div class="choice">
+                    <div>
+                        <input type="radio" id="it" name="language-selector" value="it" [(ngModel)]="selectedLanguage" (change)="switchLanguage()" class="choice-circle">
+                        <div class="ball"></div>
+                    </div>
+                    <label class="choice-name" for="it">Italien</label>
+                </div>
+                <div class="choice">
+                    <div>
+                        <input type="radio" id="es" name="language-selector" value="es" [(ngModel)]="selectedLanguage" (change)="switchLanguage()" class="choice-circle">
+                        <div class="ball"></div>
+                    </div>
+                    <label class="choice-name" for="es">Espagnol</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container mt-4">
     <div class="row">
         <div class="col-md-6">
@@ -69,6 +127,7 @@
             </div>
         </div>
     </div>
+   
     
     <div class="row">
         <div class="col-md-12">
@@ -78,10 +137,13 @@
                         <img src="https://via.placeholder.com/50" class="mr-3 rounded-circle" alt="Avatar de l'utilisateur">
                         <div class="media-body">
                             <h5 class="mt-0">Nom de l'utilisateur</h5>
-                            <p>{{ post.descriptionPost ? post.descriptionPost : 'Description non disponible' }}</p>
+                            
+                            <p>{{ getTranslatedPostDescription(post) }}</p>
+                            
                             
                     </div>
-                    <small class="text-muted">Date: {{ post.datePost ? post.datePost : 'Non spécifiée' }}</small>
+                    <small class="text-muted">Date: {{ post.datePost | date:'dd/MM/yyyy HH:mm' }}</small>
+
                     
                 </div>
                 <div class="post-actions">
@@ -117,39 +179,27 @@
                         <button type="submit" [disabled]="CommentForm.invalid" class="btn btn-primary">Commenter</button>
                     </form>
                 </div>
-                <div *ngFor="let result of toxicityResults">
-                    <div>
-                      <p>Post ID: {{ result.postId }}</p>
-                      <p>Toxicité : {{ result.toxicityScore }}</p>
-                      <p *ngIf="result.detectedLanguages">Langues détectées : {{ result.detectedLanguages }}</p>
-                    </div>
-                  </div>
-                
+                <!-- Afficher les résultats complets de l'analyse de toxicité -->
+
+
                 <div class="comments-container">
                     <h5>Commentaires :</h5>
-                    <div *ngFor="let comment of comments[post.idPost]; let i = index">
-                        <div class="comment">
-                            <div class="media">
-                                <img src="https://via.placeholder.com/50" class="mr-3 rounded-circle" alt="Avatar de l'utilisateur">
-                                <div class="media-body">
-                                    <h6 class="mt-0">Nom de l'utilisateur</h6>
-                                    <p>{{ comment.description_comment }}</p>
-                                    <!-- Afficher les résultats de l'analyse de toxicité -->
-                                    <div *ngIf="comment.attributeScores && comment.attributeScores.TOXICITY">
-                                        <p>Toxicité : {{ comment.attributeScores.TOXICITY.summaryScore.value }}</p>
+                    <div *ngIf="selectedPostId !== null">
+                        <div *ngFor="let comment of translatedComments[selectedPostId]">
+                            <div class="comment">
+                                <div class="media">
+                                    <img src="https://via.placeholder.com/50" class="mr-3 rounded-circle" alt="Avatar de l'utilisateur">
+                                    <div class="media-body">
+                                        <h6 class="mt-0">Nom de l'utilisateur</h6>
+                                        <p>{{ comment.description_comment }}</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div *ngIf="!translatedComments[selectedPostId]?.length">Aucun commentaire traduit disponible.</div>
                     </div>
-                    
-                    <!-- Display a message if no comments are available -->
-                    <div *ngIf="!comments[post.idPost] || comments[post.idPost].length === 0">
-                        <p>Aucun commentaire disponible pour le moment.</p>
-                    </div>
+                    <div *ngIf="selectedPostId === null">Sélectionnez un post pour afficher les commentaires.</div>
                 </div>
-                
-                
             </div>
         </div>
     </div>
