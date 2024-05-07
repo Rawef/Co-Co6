@@ -2,6 +2,7 @@ package com.example.testeditions.Services;
 
 
 import com.example.testeditions.Entites.LikeDislike;
+import com.example.testeditions.Entites.MatchStatus;
 import com.example.testeditions.Entites.Profil;
 import com.example.testeditions.Entites.User;
 import com.example.testeditions.Repositories.LikeDislikeRepository;
@@ -64,4 +65,25 @@ public class LikeDislikeService implements ILikeDislikeService {
     }
 
     // Ajoutez d'autres méthodes de service si nécessaire
+    public long getTotalLikes() {
+        return likeDislikeRepository.countByMatchStatus(MatchStatus.LIKE);
+    }
+
+    public double getPercentageOfUsersWhoLikedOrDisliked() {
+        // Récupérer le nombre total d'utilisateurs et le nombre total de likes/dislikes
+        long totalUsers = userRepository.count();
+        long totalLikesAndDislikes = likeDislikeRepository.count();
+
+        // Calculer le pourcentage
+        if (totalUsers > 0) {
+            double percentage = ((double) totalLikesAndDislikes / totalUsers) ;
+            return percentage;
+        } else {
+            // Gérer le cas où il n'y a aucun utilisateur dans la base de données
+            throw new RuntimeException("No users found in the database");
+        }
+    }
+    public long getTotalReactions() {
+        return likeDislikeRepository.count();
+    }
 }

@@ -54,6 +54,18 @@ public class LikeDislikeController {
         // Renvoyer le résultat avec un code de statut approprié
         return ResponseEntity.ok().body(userLikedProfile);
     }
+    @GetMapping("/totalLikes")
+    public long getTotalLikes() {
+        return likeDislikeService.getTotalLikes();
+    }
+    @GetMapping("/percentage")
+    public double getPercentageOfUsersWhoLikedOrDisliked() {
+        return likeDislikeService.getPercentageOfUsersWhoLikedOrDisliked();
+    }
+    @GetMapping("/total")
+    public long getTotalReactions() {
+        return likeDislikeService.getTotalReactions();
+    }
 
     // Ajoutez d'autres méthodes de contrôleur si nécessaire
 }

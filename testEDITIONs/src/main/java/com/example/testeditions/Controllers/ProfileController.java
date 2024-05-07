@@ -15,7 +15,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/profiles")
 public class ProfileController {
@@ -40,7 +40,10 @@ public class ProfileController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }*/
-
+    @GetMapping("/count-gender")
+    public Map<String, Long> countGender() {
+        return profileService.countGender();
+    }
     @PostMapping
     public ResponseEntity<String> createProfile(
             @RequestParam("image") MultipartFile imageFile,

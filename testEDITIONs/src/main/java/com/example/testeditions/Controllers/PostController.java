@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/posts")
@@ -48,5 +49,22 @@ public class PostController {
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+    @GetMapping("/withUserInfo")
+    public List<String> getPostsWithUserInfo() {
+        return postService.getPostsWithUserInfo();
+    }
+    @GetMapping("/total")
+    public ResponseEntity<Long> getTotalNumberOfPosts() {
+        long totalNumberOfPosts = postService.getTotalNumberOfPosts();
+        return new ResponseEntity<>(totalNumberOfPosts, HttpStatus.OK);
+    }
+    @GetMapping("/average-posts-per-user")
+    public double getAveragePostsPerUser() {
+        return postService.getAveragePostsPerUser();
+    }
+    @GetMapping("/most-reacted")
+    public Post getPostWithMostReactions() {
+        return postService.getPostWithMostReactions();
     }
 }
