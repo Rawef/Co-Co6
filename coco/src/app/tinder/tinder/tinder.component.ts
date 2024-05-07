@@ -111,7 +111,7 @@ export class TinderComponent {
               if (response && response.createdMatch) {
                 Swal.fire('Match créé avec succès', '', 'success');
               } else {
-                Swal.fire('Like/dislike enregistré avec succès', '', 'success');
+                Swal.fire('Like enregistré avec succès', '', 'success');
               }
             },
             (error) => {
